@@ -1,3 +1,4 @@
 ﻿python-dotenv
 seaborn
 matplotlib
+streamlit-aggrid
