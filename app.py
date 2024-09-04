@@ -58,7 +58,7 @@ with st.sidebar:
         st.button("Cerrar sesión", on_click=logout)
         st.write("---")
         st.write("Navegación")
-        page = st.selectbox("Selecciona una página", ["Inicio", "Análisis de Datos", "Configuración"])
+        page = st.selectbox("Selecciona una página", ["Dotación", "CAI", "Jerarquía"])
 
 # Contenido principal de la aplicación
 if not st.session_state.authenticated:
@@ -133,33 +133,8 @@ else:
             """, unsafe_allow_html=True)
 
             # Mostrar el dataset con funcionalidades de búsqueda
-            st.write("Dataset mtcars:")
+            st.write("GRADO ACADËMICO:")
 
-            # Agregar filtro por columna 'model'
-            if 'model' in df.columns:
-                # Añadir la opción "Mostrar Todos"
-                model_options = ['Mostrar Todos'] + list(df['model'].unique())
-                selected_model = st.selectbox("Selecciona un modelo", model_options)
-
-                if selected_model != 'Mostrar Todos':
-                    df_filtered = df[df['model'] == selected_model]
-                else:
-                    df_filtered = df
-            else:
-                df_filtered = df
-
-            # Configurar opciones de la tabla
-            gb = GridOptionsBuilder.from_dataframe(df_filtered)
-            gb.configure_default_column(filterable=True, sortable=True)
-            gb.configure_grid_options(domLayout='autoHeight')
-            grid_options = gb.build()
-
-            # Mostrar la DataTable
-            AgGrid(df_filtered, gridOptions=grid_options, height=600, use_container_width=True)
-
-            # Mostrar resumen estadístico
-            st.write("Resumen Estadístico:")
-            st.dataframe(df_filtered.describe())
 
         with tab2:
             st.header("Visualización")
